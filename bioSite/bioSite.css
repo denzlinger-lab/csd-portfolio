@@ -382,11 +382,15 @@ nav a:hover {
     nav {
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
         padding: 1rem 5%;
     }
 
     .nav-links {
-        gap: 20px;
+        justify-content: flex-end;
+        width: auto;
+        margin-top: 0;
+        gap: 25px;
     }
 
     nav a {
