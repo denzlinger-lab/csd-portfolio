@@ -1,0 +1,14 @@
+# Mac system files
+.DS_Store
+
+# Editor-specific folders
+.idea/
+.vscode/
+*.iml
+
+# Python and Java junk
+__pycache__/
+*.class
+
+# Large compressed files
+*.zip
