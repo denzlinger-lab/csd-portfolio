@@ -37,7 +37,7 @@ h1, h2, h3 {
     text-decoration: none;
     font-weight: 600;
     border: 2px solid var(--oxblood);
-    transition: 0.3s ease;
+    transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -45,6 +45,8 @@ h1, h2, h3 {
 .btn-primary:hover {
     background-color: transparent;
     color: var(--oxblood);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .accent-quote {
@@ -59,6 +61,25 @@ h1, h2, h3 {
     background-color: #f9f9f9;
     position: relative;
     max-width: 600px;
+}
+
+/* --- ATOMS: Section Label --- */
+.section-title {
+    font-family: var(--font-header), sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    color: var(--cement);
+    margin-bottom: 10px;
+}
+
+.section-label {
+    font-family: var(--font-body), sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    color: var(--cement);
+    margin-bottom: 10px;
 }
 
 /* --- MOLECULES: Navigation --- */
@@ -94,6 +115,56 @@ nav a:hover {
     color: var(--oxblood);
 }
 
+/* --- MOLECULES: Affiliation List --- */
+.affiliation-list {
+    border-top: 1px solid var(--cement);
+    margin-top: 40px;
+    width: 100%;
+}
+
+.affiliation-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--cement);
+    text-decoration: none;
+    color: var(--blueprint);
+    font-family: var(--font-body), sans-serif;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.affiliation-item:hover {
+    color: var(--oxblood);
+    padding-left: 15px; /* The "nudge" */
+    background-color: rgba(74, 14, 14, 0.03); /* Extremely subtle tint */
+}
+
+.affiliation-item .arrow {
+    font-size: 1.2rem;
+    color: var(--cement);
+    transition: transform 0.3s ease;
+}
+
+.affiliation-item:hover .arrow {
+    transform: translateX(5px); /* Arrow moves slightly right on hover */
+    color: var(--oxblood);
+}
+
+/* --- MOLECULES: External Link Group --- */
+.external-links-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-primary.external {
+    font-size: 0.85rem;
+    padding: 12px 20px;
+}
+
 /* --- ORGANISMS: Layout Templates --- */
 .container {
     max-width: 1100px;
@@ -114,26 +185,31 @@ nav a:hover {
     margin-bottom: 10px;
 }
 
+.hero-tagline {
+    font-family: var(--font-body), serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--cement);
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
 .timeline-row {
     display: flex;
-    align-items: center;
-    gap: 80px;
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
     margin-bottom: 60px;
-    width: 100%;
 }
 
 .timeline-row.reverse {
-    flex-direction: row-reverse;
+    flex-direction: column;
 }
 
-.timeline-image {
-    flex: 1;
-    min-width: 250px;
-    overflow: hidden;
-}
-
+.timeline-image,
 .timeline-text {
-    flex: 2;
+    width: 100%
 }
 
 .timeline-image img {
@@ -142,75 +218,43 @@ nav a:hover {
     display: block;
 }
 
+/* --- ORGANISMS: Affiliations Section --- */
+.affiliations-section {
+    margin-top: 60px;
+}
+
 /* --- ORGANISMS: About Page Split Layout --- */
 .split-screen {
     display: flex;
-    min-height: calc(100vh - 74px); /* Fills screen minus nav */
-    width: 100%;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .split-image {
-    flex: 1; /* 1 part of the ratio */
+    height: 400px;
     background-image: url('images/elena.png');
-    background-size: 200%;
-    background-position: top center;
-    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 20%;
     border-right: 2px solid var(--cement);
 }
 
-.split-content {
-    flex: 2; /* 2 parts of the ratio - makes the bio wider */
-    padding: 80px 8%;
-    overflow-y: auto;
-    background-color: var(--white);
+.split-content h1 {
+    font-family: var(--font-header), serif;
+    color: var(--oxblood);
+    font-size: 3rem;
+    margin-bottom: 20px;
 }
 
-/* --- MOBILE RESPONSIVENESS --- */
-@media (max-width: 768px) {
-    .split-screen {
-        flex-direction: column;
-    }
-    .split-image {
-        min-height: 400px; /* Ensures the photo doesn't vanish on mobile */
-        background-size: cover;
-        background-position: center 20%;
-        border-right: none;
-        border-bottom: 2px solid var(--cement);
-    }
-    .timeline-row, .timeline-row.reverse {
-        flex-direction: column;
-        gap: 30px;
-        text-align: center;
-    }
-    .timeline-image, .timeline-text {
-        width: 100%;
-    }
-    .hero-banner h1 {
-        font-size: 2.2rem;
-    }
-    .container {
-        padding: 40px 15px;
-    }
-    nav {
-        flex-direction: column;
-        gap: 15px;
-    }
-    nav a {
-        margin: 0 10px;
-        font-size: 0.8rem;
-    }
-    .hobby-image {
-        height: 200px;
-    }
+.split-content {
+    padding: 40px 10%;
+    flex: 1;
 }
 
 /* --- MOLECULES: Hobby Cards --- */
 .hobby-grid {
     display: grid;
-    /* This creates a responsive grid without needing media queries */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-    margin-top: 50px;
+    grid-template-columns: 1fr;
+    gap: 20px;
 }
 
 .hobby-card {
@@ -245,6 +289,8 @@ nav a:hover {
     color: var(--oxblood);
 }
 
+
+
 /* --- ORGANISMS: Page Footer --- */
 .site-footer {
     padding: 60px 0;
@@ -262,4 +308,52 @@ nav a:hover {
 
 .text-center {
     text-align: center;
+}
+
+/* DESKTOP FIX */
+@media screen and (min-width: 768px) {
+    .split-screen {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+    }
+    .split-image {
+        flex: 0.7;
+        background-image: url('images/elena.png');
+        background-size: cover;
+        background-position: center center;
+        height: 100%;
+    }
+    .split-content {
+        flex: 1.3;
+        overflow-y: auto;
+    }
+    .hobby-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* The 2x2 Grid */
+        gap: 30px;
+    }
+    .hobby-image {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+    .timeline-row {
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+    }
+
+    .timeline-row.reverse {
+        flex-direction: row-reverse;
+    }
+
+    .timeline-image {
+        flex: 1;
+    }
+
+    .timeline-text {
+        flex: 2;
+    }
+
 }
