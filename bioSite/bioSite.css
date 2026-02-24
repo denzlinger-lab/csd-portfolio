@@ -16,12 +16,35 @@ body {
     font-family: var(--font-body), sans-serif;
     line-height: 1.6;
     margin: 0;
+    /* Safety for mobile overflow */
+    overflow-x: hidden;
+    width: 100%;
 }
 
+/* UPDATED: Unified Heading Logic */
 h1, h2, h3 {
     font-family: var(--font-header), serif;
     color: var(--oxblood);
     margin-top: 0;
+    line-height: 1.2;
+    /* Prevents words from escaping the Pixel screen */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Specifically target H1 for the fluid "Clamp" effect */
+h1 {
+    /* Min: 2.2rem for Pixel, Scalable: 8vw, Max: 3.5rem for Desktop */
+    font-size: clamp(1.8rem, 9vw, 3.5rem);
+    margin-bottom: 1rem;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    hyphens: none;
+    line-height: 1.1;
+}
+
+h2 {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
 }
 
 /* --- ATOMS: Buttons & Quotes --- */
@@ -50,35 +73,28 @@ h1, h2, h3 {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
+/* UPDATED: Accent Quote Mobile Fix */
 .accent-quote {
     font-family: var(--font-header), serif;
     font-style: italic;
-    font-size: 1.4rem;
+    font-size: clamp(1.1rem, 4vw, 1.4rem); /* Added fluid scaling here too */
     color: var(--oxblood);
     border-left: 4px solid var(--oxblood);
-    padding: 20px 30px;
-    margin: 40px 0;
+    padding: 20px 25px; /* Slightly tighter padding for mobile */
+    margin: 30px 0;
     line-height: 1.5;
     background-color: #f9f9f9;
     position: relative;
-    max-width: 600px;
+    max-width: 100%; /* Changed from 600px to 100% for Pixel safety */
+    box-sizing: border-box; /* Ensures padding doesn't push it off screen */
 }
 
 /* --- ATOMS: Section Label --- */
-.section-title {
-    font-family: var(--font-header), sans-serif;
+.section-title, .section-label {
+    font-family: var(--font-body), sans-serif; /* Standardized to font-body */
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size: 0.85rem;
-    color: var(--cement);
-    margin-bottom: 10px;
-}
-
-.section-label {
-    font-family: var(--font-body), sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.85rem;
+    font-size: 0.8rem; /* Slightly smaller for an elegant look */
     color: var(--cement);
     margin-bottom: 10px;
 }
@@ -180,19 +196,34 @@ nav a:hover {
     max-width: 1100px;
     margin: auto;
     padding: 80px 20px;
+    box-sizing: border-box;
 }
+
+/* --- ORGANISMS: Hero Section --- */
 
 .hero-banner {
     background: var(--blueprint);
     color: var(--white);
-    padding: 120px 5%;
+    /* Reduced top/bottom padding for mobile; 5% horizontal keeps it fluid */
+    padding: 60px 5%;
     text-align: center;
+    /* Added flex to help with vertical centering */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow: hidden; /* The safety net for the Pixel's edges */
 }
 
 .hero-banner h1 {
     color: var(--white);
-    font-size: 3.5rem;
+    /* Swapped 3.5rem for a clamp to prevent edge-bleeding */
+    font-size: clamp(2.2rem, 10vw, 3.5rem);
     margin-bottom: 10px;
+    line-height: 1.1;
+    width: 100%;
+    max-width: 900px; /* Keeps it from getting too stretched on desktop */
 }
 
 .hero-tagline {
@@ -202,7 +233,8 @@ nav a:hover {
     letter-spacing: 2px;
     color: var(--cement);
     margin-top: 15px;
-    font-size: 0.9rem;
+    /* Slightly smaller on mobile to ensure it stays on one line */
+    font-size: clamp(0.75rem, 3vw, 0.9rem);
 }
 
 .timeline-row {
@@ -343,20 +375,24 @@ nav a:hover {
         background-position: center center;
         height: 100%;
     }
+
     .split-content {
         flex: 1.3;
         overflow-y: auto;
     }
+
     .hobby-grid {
         display: grid;
         grid-template-columns: 1fr 1fr; /* The 2x2 Grid */
         gap: 30px;
     }
+
     .hobby-image {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 30px;
     }
+
     .timeline-row {
         flex-direction: row;
         align-items: center;
@@ -396,6 +432,15 @@ nav a:hover {
     nav a {
         font-size: 0.9rem;
         word-spacing: 4px;
+    }
+
+    .hero-banner {
+        padding: 80px 5%;
+    }
+
+    .container {
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
 
 }
