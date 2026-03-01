@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description"
+        content="Abram's Module 2.2 Assignment">
+    <meta name="keywords"
+        content="html, css, school, student">
+    <meta name="robots"
+        content="nofollow">
+    <title>CSD 340 Development with HTML and CSS</title>
+    <link href="Denzlinger_Mod2_2.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<script>
+    var myName = "Abram";
+    var dogOne = "Murphy";
+    var dogTwo = "Luna";
+    var nearbyCity = "Omaha";
+    </script>
+
+    <div id="container">
+        <h1>Assignment 9.3: JavaScript - Part 1</h1>
+            <h2>Chapter One</h2>
+                <p class="intro">Hello, my name is <span id = "Abram">_____</span>. I'm a Software
+                    Development student at Bellevue University. I work in
+                    IT.</p>
+                <p>I live in Plattsmouth, NE with my wife, daughter and 2
+                    dogs. <span id = "Murphy">______</span> is a 12-year-old German Shepherd mix, and
+                    <span id = "Luna">____</span> is a 9-month-old German Shepherd.
+                    They keep us pretty busy!</p>
+                <p>Plattsmouth is a small town of ~6500 people, about 20 miles
+                    south of <span id = "Omaha">_____</span>. We enjoy living outside the city, but still
+                    close enough to enjoy it when we want. It's nice and quiet
+                    out here.</p>
+                <p>For hobbies, I enjoy working with electronics and playing
+                    music. My wife and daughter are also musicians, and so our
+                    house is full of instruments. When I'm not doing homework,
+                    which isn't very often these days, I'm usually pecking away
+                    on one instrument or another.</p>
+                <p>
+                    <button type = "button"
+                            onclick = "document.getElementById('Abram').innerHTML = myName">my name</button></p>
+                <p>
+                    <button type = "button"
+                            onclick = "document.getElementById('Murphy').innerHTML = dogOne">dog one</button></p>
+                <p>
+                    <button type = "button"
+                            onclick = "document.getElementById('Luna').innerHTML = dogTwo">dog two</button></p>
+                <p>
+                    <button type = "button"
+                            onclick = "document.getElementById('Omaha').innerHTML = nearbyCity">city</button></p>
+        <hr>
+        <address>
+            <p><a href="https://www.bellevue.edu/">Bellevue University</a></p>
+            <p>100 Galvin Road South<p>
+            <p>Bellevue, NE 68005</p>
+        </address>
+    </div>
+</body>
+</html>
