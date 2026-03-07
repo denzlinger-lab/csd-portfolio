@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <!--Abram Denzlinger
 March 7, 2026
 Assignment 10.3 - JavaScript Part 2
@@ -6,13 +7,11 @@ This page uses JavaScript-driven image toggling and hover
 effects. Fonts, font colors, and background were chosen to
 match the aesthetics of the image content.
 -->
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment 10.3: JavaScript - Part 2</title>
+    <title>CSD 340 Web Development with HTML and CSS</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +28,6 @@ match the aesthetics of the image content.
 <p id="instruction">Click the images below to flip them</p>
 
 <div class="gallery-container">
-
     <div class="image-container">
         <img class="clickable-image"
              src="mullen.jpeg"
@@ -45,51 +43,53 @@ match the aesthetics of the image content.
              data-hover="tele only.png"
              alt="Second Instrument">
     </div>
-
 </div>
 
+<footer>
+    <p>&copy; 2026 Denzlinger</p>
+    <a href="https://denzlinger-lab.github.io/csd-portfolio/" target="_blank" class="portal-link">back to Landing Page</a>
+</footer>
+
 <script>
-    // --- 1. Instruction Text Hover Logic ---
+    // --- 1. Instruction Text Hover ---
     const tip = document.getElementById('instruction');
 
     tip.addEventListener('mouseover', () => {
         tip.style.color = '#ffb347';
     });
 
-    // Reverts to the muted gray (#aaa) defined in your CSS
     tip.addEventListener('mouseout', () => {
         tip.style.color = '#aaa';
     });
 
 
     // --- 2. Image Click Toggle Logic ---
+
+    // Function for "onclick" event
+    function flipImage(event) {
+        const img = event.currentTarget;
+        const original = img.getAttribute('data-original');
+        const hover = img.getAttribute('data-hover');
+        const currentSrc = img.getAttribute('src');
+
+        if (currentSrc === original) {
+            img.setAttribute('src', hover);
+        } else {
+            img.setAttribute('src', original);
+        }
+    }
+
     const images = document.querySelectorAll('.clickable-image');
 
-    // Preload hover assets to ensure the first click is instantaneous
+    // Preload hover assets and assign onclick MouseEvent
     images.forEach(img => {
         const preloader = new Image();
         preloader.src = img.getAttribute('data-hover');
-    });
 
-    images.forEach(img => {
-        img.addEventListener('click', () => {
-            const original = img.getAttribute('data-original');
-            const hover = img.getAttribute('data-hover');
-
-            // Using getAttribute('src') avoids the "Absolute URL" comparison bug
-            const currentSrc = img.getAttribute('src');
-
-            if (currentSrc === original) {
-                img.setAttribute('src', hover);
-            } else {
-                img.setAttribute('src', original);
-            }
-        });
+        // Assigning the function via the "onclick" MouseEvent property
+        img.onclick = flipImage;
     });
 </script>
-<footer>
-    <p>&copy; 2026 Denzlinger</p>
-    <a href="https://denzlinger-lab.github.io/csd-portfolio/" target="_blank" class="portal-link">back to Landing Page</a>
-</footer>
+
 </body>
 </html>
