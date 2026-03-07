@@ -1,0 +1,143 @@
+/* --- Global Styles --- */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 30px 20px 0 20px;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #121212;
+    color: #f5f5f5;
+    font-family: 'Montserrat', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- Typography --- */
+h1 {
+    font-family: 'Playfair Display', serif;
+    color: #ffffff;
+    font-size: 2.4rem;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+#instruction {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    /* Spaced out lettering*/
+    letter-spacing: 4px;
+    margin-bottom: 50px;
+    color: #aaa; /* Default muted gray */
+    transition: color 0.3s ease, letter-spacing 0.4s ease;
+    text-align: center;
+}
+
+/* JavaScript handles the hover color (honey orange) */
+#instruction:hover {
+    letter-spacing: 5px;
+    cursor: default;
+}
+
+/* --- Gallery Layout --- */
+.gallery-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; /* Wraps to vertical stack on smaller screens */
+    justify-content: center;
+    gap: 40px; /* Breathing room between images */
+    width: 100%;
+    max-width: 1100px;
+}
+
+/* --- Image Containers --- */
+.image-container {
+    width: 400px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 8px;
+    /* Soft amber-tinted shadow to compliment the honey-orange wood tones */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 179, 71, 0.05);
+    background-color: #000; /* Pure black to blend with gloss black subjects */
+    border: 1px solid #2a2a2a; /* Subtle edge definition */
+}
+
+.clickable-image {
+    width: 100%;
+    height: 100%;
+    /* 'contain' ensures the instrument is never cropped or zoomed */
+    object-fit: contain;
+    cursor: pointer;
+    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.3s ease;
+}
+
+/* Interactive States */
+.clickable-image:hover {
+    transform: scale(1.04);
+    /* Boosts the lighting on the subject, highlighting the "gloss" finish */
+    filter: brightness(1.2);
+}
+
+.clickable-image:active {
+    /* Tactile "pressed" effect on click */
+    transform: scale(0.97);
+    filter: brightness(0.9);
+}
+
+/* --- Footer Styling --- */
+footer {
+    margin-top: auto;
+    padding: 40px 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid #2a2a2a;
+    background-color: #0e0e0e; /* Slightly darker than body */
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #666;
+    letter-spacing: 1px;
+}
+
+.portal-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffb347; /* Honey-orange accent color */
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 4px 8px;
+}
+
+.portal-link:hover {
+    color: #ffffff;
+    letter-spacing: 3px;
+    text-shadow: 0 0 8px rgba(255, 179, 71, 0.4);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 450px) {
+    .image-container {
+        width: 100%;
+        height: auto;
+        /* Maintains the 4:3 box shape even as it shrinks for mobile */
+        aspect-ratio: 4 / 3;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    #instruction {
+        letter-spacing: 2px;
+        font-size: 0.8rem;
+    }
+}
