@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!--Abram Denzlinger
+March 15, 2026
+Assignment 11.2 - JavaScript Part 3
+
+This page uses JavaScript to run a simple to-do list.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSD 340 Web Development with HTML and CSS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>
+            Assignment 11.2
+            <button id="themeToggle" onclick="toggleTheme()">🌙 Dark</button>
+        </h1>
+    </header>
+
+    <section>
+        <h2>Task Manager</h2>
+        <input type="text" id="itemInput" placeholder="What needs to be done?">
+
+        <div class="button-group">
+            <button onclick="addItem()">Add</button>
+            <button class="btn-delete" onclick="deleteLast()">Delete Last</button>
+            <button onclick="sortList()">Sort List</button>
+        </div>
+    </section>
+
+    <h3 id="listHeader">Your list is currently empty. Add a task to get started!</h3>
+    <ul id="itemList"></ul>
+</div>
+
+<script>
+    // Array to hold the "Things to do"
+    let entries = [];
+
+    // --- THEME LOGIC ---
+    function toggleTheme() {
+        const body = document.body;
+        const btn = document.getElementById('themeToggle');
+        body.classList.toggle('dark-mode');
+
+        if (body.classList.contains('dark-mode')) {
+            btn.textContent = "☀️ Light";
+            btn.style.background = "#f0f2f5";
+            btn.style.color = "#1a1a1a";
+        } else {
+            btn.textContent = "🌙 Dark";
+            btn.style.background = "#444";
+            btn.style.color = "white";
+        }
+    }
+
+    // --- KEYBOARD LISTENER ---
+    // Listens for 'Enter' key specifically within the input box
+    document.getElementById('itemInput').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            addItem();
+        }
+    });
+
+    // --- ARRAY LOGIC ---
+    function addItem() {
+        const input = document.getElementById('itemInput');
+        const value = input.value.trim();
+
+        if (value !== "") {
+            entries.push(value);
+            alert("Added to list: " + value);
+            input.value = "";
+            displayEntries();
+        } else {
+            alert("Please enter a task.");
+        }
+    }
+
+    function deleteLast() {
+        if (entries.length > 0) {
+            const deletedItem = entries.pop();
+            alert("Deleted last entry: " + deletedItem);
+            displayEntries();
+        } else {
+            alert("The list is already empty.");
+        }
+    }
+
+    function deleteSpecific(index) {
+        const deletedItem = entries[index];
+        entries.splice(index, 1);
+        alert("Deleted selected entry: " + deletedItem);
+        displayEntries();
+    }
+
+    function sortList() {
+        if (entries.length > 0) {
+            entries.sort();
+            alert("The list has been sorted.");
+            displayEntries();
+        } else {
+            alert("Nothing to sort.");
+        }
+    }
+
+    // --- DISPLAY LOGIC ---
+    function displayEntries() {
+        const listContainer = document.getElementById('itemList');
+        const headerContainer = document.getElementById('listHeader');
+
+        // Clear current list content
+        listContainer.innerHTML = "";
+
+        if (entries.length > 0) {
+            headerContainer.textContent = "Things to do (click an item to delete):";
+
+            // Build the list from the array
+            entries.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                // Clicking the list item triggers a specific deletion
+                li.onclick = () => deleteSpecific(index);
+                listContainer.appendChild(li);
+            });
+        } else {
+            // Friendly message for an empty array
+            headerContainer.textContent = "Your list is currently empty. Add a task to get started!";
+        }
+    }
+</script>
+</body>
+</html>
