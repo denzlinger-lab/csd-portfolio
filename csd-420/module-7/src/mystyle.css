@@ -1,0 +1,24 @@
+/*
+ * Abram Denzlinger
+ * May 2, 2026
+ * Module 7.2 - CSS Stylesheet
+ *
+ * This stylesheet "defines a class for white fill and black
+ * stroke color and an ID for red and green color" as instructed
+ * for the assignment
+ */
+
+.plaincircle{
+    -fx-fill:white;
+    -fx-stroke:black;
+}
+
+#redcircle{
+    -fx-fill: red;
+    -fx-stroke :red;
+}
+
+#greencircle{
+    -fx-fill: green;
+    -fx-stroke: green;
+}
